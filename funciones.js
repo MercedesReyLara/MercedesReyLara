@@ -24,7 +24,7 @@ let recoge_datos = async (req, res) => {
 
 }
 mongoose.connect(BASE,function(err,db){
-    let FRASES=db.collection("frases").find({})(function(err,FRASES){
+    let FRASES=db.collection("frases").find({}).toArray(function(err,FRASES){
         let NUMERORANDOM=Math.floor(Math.random()*FRASES.length);
     })
 })
