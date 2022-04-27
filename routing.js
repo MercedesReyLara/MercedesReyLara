@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 
-const fn = require('./app.functions');
+const fn = require('./funciones');
 
 router.get('/insertar', fn.insertar_frase)
 router.get('/mostrar/:slug', fn.mostrar_slug)
