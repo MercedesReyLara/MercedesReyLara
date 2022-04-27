@@ -1,7 +1,7 @@
 const express  = require('express')
 const mongoose = require('mongoose')
 
-const database = "mongodb+srv://dev:A.joker.1@dev.kdfi4.mongodb.net/frases_aleatorias?retryWrites=true&w=majority"
+const BASE= "mongodb+srv://Shinon:123456A@entregaviernes.px7ig.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 
 const Comenzar =()=> {
 const app     = express()
@@ -14,17 +14,17 @@ app.use(express.urlencoded({ extended: true }))
 // app static dir /public
 app.use(express.static('public'))
 
-// Routing
-const router = require('./app.routing')
+//Routing
+const router = require('./routing')
 app.use(router)
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port)
 }
 
 const manejaError = (error) => {
     console.error(error)
 }
 
-mongoose.connect(database)
+mongoose.connect(BASE)
 .then(Comenzar)
 .catch(manejaError)
