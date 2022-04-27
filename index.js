@@ -13,11 +13,6 @@ app.use(express.urlencoded({ extended: true }))
 
 // app static dir /public
 app.use(express.static('public'))
-
-//Routing
-const router = require('./routing')
-app.use(router)
-
 app.listen(port)
 }
 

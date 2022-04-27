@@ -5,7 +5,34 @@ const mongoose=require('mongoose');/*Pedimos el paquete de mongoose*/
 const BASE=('mongodb+srv://Shinon:123456A@entregaviernes.px7ig.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 const model=require('./frases.model');/*Necesitamos nuestro modelo de las frases y el autor*/
 
-let recoge_datos = async (req, res) => {
+let ej=()=>{
+ejercicio.get("/", async(req,res)=>{
+    mongoose.connect(BASE,function(err,db){
+        let FRASES= db.collection("frases").find({}).toArray(function(err,FRASES){
+            let NUMERORANDOM= Math.floor(Math.random() * FRASES.length);
+                res.render("inicio.ejs",{
+                    frase: FRASES[NUMERORANDOM].frase,
+                    autor:FRASES[NUMERORANDOM].autor})
+                })
+               
+                    db.close();
+        })
+})
+
+ejercicio.get("/inicio",async(req,res)=>{
+    mongoose.connect(BASE,function(err,db){
+        let FRASES= db.collection("frases").find({}).toArray(function(err,FRASES){
+            let NUMERORANDOM= Math.floor(Math.random() * FRASES.length);
+                res.render("inicio.ejs",{
+                    frase: FRASES[NUMERORANDOM].frase,
+                    autor:FRASES[NUMERORANDOM].autor})
+                })
+               
+                    db.close();
+        })
+})
+
+ejercicio.post("/",async(req,res)=>{
     const {query, params, body} = req
     const author = body.author
     const frase = body.frase
@@ -21,39 +48,12 @@ let recoge_datos = async (req, res) => {
     }).catch((error)=>{
         console.error(error)
     })
-
-}
-mongoose.connect(BASE,function(err,db){
-    let FRASES=db.collection("frases").find({}).toArray(function(err,FRASES){
-        let NUMERORANDOM=Math.floor(Math.random()*FRASES.length);
-    })
 })
-let mostrar_frase = (req, res) => {
-    const {query, params, body} = req
-    let queries = {
-        frase: FRASES[NUMERORANDOM].frase,
-        author: FRASES[NUMERORANDOM].autor
-    }
-   ejs.renderFile('./cosas/mostrar_frase.ejs', queries, {}, (err, str) => {
-        if (err) {
-         console.log(err)
-        }
-        res.send(str)
-       })
-
 }
-let insertar_frase = (req, res) => {
+let DaError=(err)=>{
+    console.log(err);
+}
 
-    let callback = (error, str) => {
-        if (error) {
-            console.log(error)
-           }
-           res.send(str)
-    }
-
-    ejs.renderFile('./cosas/insertar.ejs', {}, {}, callback)
- }
-
-exports.recoge_datos   = recoge_datos
-exports.insertar_frase = insertar_frase
-exports.mostrar_frase  = mostrar_frase
+mongoose.connect(BASE)
+.then(ej)
+.catch(DaError)
