@@ -34,13 +34,14 @@ ejercicio.get("/insertar",async(req,res)=>{
 })
 
 ejercicio.post("/",async(req,res)=>{
+    let frase=(req,res)=>{
     const {query, params, body} = req
-    const author = body.author
+    const autor = body.autor
     const frase = body.frase
 
   
     let modelo = new model()
-    modelo.author = author
+    modelo.autor = autor
     modelo.frase = frase
     modelo = await modelo.save()
 
@@ -49,6 +50,7 @@ ejercicio.post("/",async(req,res)=>{
     }).catch((error)=>{
         console.error(error)
     })
+}
 })
 }
 let DaError=(err)=>{
