@@ -6,15 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INSERTAR</title>
 </head>
-<body>
-    <form action="." method="POST">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="autor" aria-label="uwu">
-          </div>
-          
-          <div class="input-group">
-            <span class="input-group-text">frase</span>
-            <textarea class="form-control" aria-label="With textarea"></textarea>
-          </div>
+<h1>BIENVENIDOS AL PANEL DE INSERCIÓN DE FRASES</h1>
+<a href="/insertar">Insertar Frases</a>
+<div class="container">
+  <form class="card" action="." method="POST">
+      <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Autor:</label>
+          <input type="text" name="author" class="form-control" id="exampleFormControlInput1" placeholder="M.Rajoy">
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">Frase:</label>
+          <textarea name="frase" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-link">Guardar</button>
+  </form>
+</div>
 </body>
 </html>
