@@ -7,12 +7,9 @@ const Comenzar =()=> {
 const app     = express()
 const port    = 3000
 
-// express body json
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// app static dir /public
-app.use(express.static('public'))
 app.listen(port)
 }
 
