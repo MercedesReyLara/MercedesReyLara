@@ -20,3 +20,15 @@ Para ello tenemos que pensar en la estructura, la cual es muy simple.Una frase y
 
 ## CONECTAR LA BASE DE DATOS
 Para ello utilizaremos mongoDB. Crearemos un cluster vacío y utilizaremos el enlace obtenido en la función "conectar" para conectarla.En nuestro código usaremos comandos como .await mongoose conect para que se pueda conectar correctamente.
+
+## CREAR LAS DISTINTAS FUNCIONES
+Necesitaremos crear 2 funciones get para mostrar la frase e insertar los datos y una función post para recoger los datos que finalmente serán insertados.Para la función mostrar tenemos qure hacer un conteo de todos los datos de la base de datos siguiendo nuestro modelo y posteriormente generaremos un número random que recorrerá todo ese conteo y nos dará uno de esos datos.
+Para la función de recoger,simplemente congeremos los distintos parámetros del body y los guardaremos en variables,para posteriormente insertarlos.
+
+## PARA LOS ARCHIVOS HTML RENDERIZADOS
+Utilizaremos un .ejs que renderizaremos desde el propio js. Lo trataremos como si fuera un html normal,con las misma etiquetas,usando el style....
+
+## SI TODO VA BIEN
+Si todo va bien, el resultado final será una página web inicial que seguirá nuestro modelo indicado con el style.css y que nos mostrará la frase, mientras que después, cuando le demos al botón de insertar,nos mandará a una página donde podremos insertar nuestra propia frase en la base de datos que se mostrará alguna vez en la página inicial si es que coincide.
+
+Y... trabajo finalizado!😁
