@@ -1,3 +1,4 @@
+const ejs=require('ejs')
 const express=require('express');/*Pedimos el paquete express*/
 const ejercicio=express();/*Hace que nuestro servidor pueda funcionar.App es mi servidor*/
 ejercicio.listen(3000);/*Puerto de nuestro servidor=> localhost:3000*/
@@ -6,30 +7,30 @@ const BASE=('mongodb+srv://Shinon:123456A@entregaviernes.px7ig.mongodb.net/myFir
 const model=require('./frases.model');/*Necesitamos nuestro modelo de las frases y el autor*/
 
 let ej=()=>{
-ejercicio.get("/", async(req,res)=>{
-    mongoose.connect(BASE,function(err,db){
-        let FRASES= db.collection("frases").find({}).toArray(function(err,FRASES){
-            let NUMERORANDOM= Math.floor(Math.random() * FRASES.length);
-                res.render("inicio.ejs",{
-                    frase: FRASES[NUMERORANDOM].frase,
-                    autor:FRASES[NUMERORANDOM].autor})
-                })
-               
-                    db.close();
-        })
-})
+ejercicio.get("/inicio", async(req,res)=>{
+    let mostrar_frase= (req,res)=>{
+                const frases= await model.find({})
+                const total_frases=await model.find({}).count()
+                let NUMERORANDOM=Math.floor(Math.random()*total_frases)
+                let frase=frases[NUMERORANDOM].frase;
+                let autor=frases[NUMERORANDOM].autor;
+                ejs.renderFile('./cosas/inicio.ejs', queries, {}, (err, str) => {
+                    if (err) {
+                     console.log(err)
+                    }
+                    res.send("inicio")
+                   })
+        }})
+ejercicio.get("/insertar",async(req,res)=>{
+    const{query,params,body}=req
 
-ejercicio.get("/inicio",async(req,res)=>{
-    mongoose.connect(BASE,function(err,db){
-        let FRASES= db.collection("frases").find({}).toArray(function(err,FRASES){
-            let NUMERORANDOM= Math.floor(Math.random() * FRASES.length);
-                res.render("inicio.ejs",{
-                    frase: FRASES[NUMERORANDOM].frase,
-                    autor:FRASES[NUMERORANDOM].autor})
-                })
-               
-                    db.close();
-        })
+    let callback=(error,str)=>{
+        if(error){
+            console.log(error)
+        }
+        res.send(str)
+    }
+    ejs.renderFile('./cosas/insertar.ejs', {}, {}, callback)
 })
 
 ejercicio.post("/",async(req,res)=>{
