@@ -7,7 +7,7 @@ const BASE=('mongodb+srv://Shinon:123456A@entregaviernes.px7ig.mongodb.net/myFir
 const model=require('./frases.model');/*Necesitamos nuestro modelo de las frases y el autor*/
 
 let ej=()=>{
-ejercicio.get("/inicio", async(req,res)=>{
+ejercicio.get("/", async(req,res)=>{
     let mostrar_frase= (req,res)=>{
                 const frases= await model.find({})
                 const total_frases=await model.find({}).count()
